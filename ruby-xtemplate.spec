@@ -12,7 +12,7 @@ Source0:	http://dl.sourceforge.net/%{tarname}/%{tarname}-%{version}.tar.gz
 # Source0-md5:	069de93c3cb8a3f18dc47f16b98636a4
 URL:		http://xtemplate.sourceforge.net
 BuildRequires:	ruby
-BuildArch:	noarch
+#BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
