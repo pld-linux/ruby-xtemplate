@@ -1,9 +1,7 @@
-%define		ruby_archdir	%(ruby -r rbconfig -e 'print Config::CONFIG["archdir"]')
-%define		ruby_rubylibdir	%(ruby -r rbconfig -e 'print Config::CONFIG["rubylibdir"]')
+%define tarname xtemplate
 Summary:	An XML/XHTML template library for Ruby
 Summary(pl):	Biblioteka szablonów XML/XHTML dla jêzyka Ruby
 Name:		ruby-XTemplate
-%define tarname xtemplate
 Version:	0.8.0
 Release:	1
 License:	GPL
@@ -11,6 +9,7 @@ Group:		Development/Libraries
 Source0:	http://dl.sourceforge.net/%{tarname}/%{tarname}-%{version}.tar.gz
 # Source0-md5:	84132c80f71d6f5fbb538f87d52e9388
 URL:		http://xtemplate.sourceforge.net
+BuildRequires:	rpmbuild(macros) >= 1.263
 BuildRequires:	ruby
 #BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -29,7 +28,7 @@ ruby install.rb config \
 	--site-ruby=%{ruby_rubylibdir} \
 	--so-dir=%{ruby_archdir}
 
-ruby install.rb setup 
+ruby install.rb setup
 
 rdoc --op rdoc -S --main README README TUTORIAL lib
 
