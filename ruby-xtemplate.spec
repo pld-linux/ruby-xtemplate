@@ -3,14 +3,14 @@ Summary:	An XML/XHTML template library for Ruby
 Summary(pl):	Biblioteka szablonów XML/XHTML dla jêzyka Ruby
 Name:		ruby-XTemplate
 Version:	0.8.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Development/Libraries
 Source0:	http://dl.sourceforge.net/%{tarname}/%{tarname}-%{version}.tar.gz
 # Source0-md5:	84132c80f71d6f5fbb538f87d52e9388
 URL:		http://xtemplate.sourceforge.net
 BuildRequires:	rpmbuild(macros) >= 1.263
-BuildRequires:	ruby
+BuildRequires:	ruby-modules
 #BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
