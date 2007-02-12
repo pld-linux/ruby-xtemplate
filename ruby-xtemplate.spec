@@ -1,6 +1,6 @@
 %define tarname xtemplate
 Summary:	An XML/XHTML template library for Ruby
-Summary(pl):	Biblioteka szablonów XML/XHTML dla jêzyka Ruby
+Summary(pl.UTF-8):   Biblioteka szablonÃ³w XML/XHTML dla jÄ™zyka Ruby
 Name:		ruby-XTemplate
 Version:	0.8.0
 Release:	2
@@ -18,8 +18,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 An XML/XHTML template library for Ruby.
 
-%description -l pl
-Biblioteka szablonów XML/XHTML dla jêzyka Ruby.
+%description -l pl.UTF-8
+Biblioteka szablonÃ³w XML/XHTML dla jÄ™zyka Ruby.
 
 %prep
 %setup -q -n %{tarname}-%{version}
