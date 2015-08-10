@@ -3,23 +3,18 @@ Summary:	An XML/XHTML template library for Ruby
 Summary(pl.UTF-8):	Biblioteka szablonów XML/XHTML dla języka Ruby
 Name:		ruby-%{pkgname}
 Version:	0.8.0
-Release:	4
+Release:	5
 License:	GPL
 Group:		Development/Libraries
-Source0:	http://dl.sourceforge.net/xtemplate/%{pkgname}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/xtemplate/%{pkgname}-%{version}.tar.gz
 # Source0-md5:	84132c80f71d6f5fbb538f87d52e9388
 URL:		http://xtemplate.sourceforge.net
-BuildRequires:	rpmbuild(macros) >= 1.484
-BuildRequires:	ruby >= 1:1.8.6
-BuildRequires:	ruby-modules
-#BuildArch:	noarch
-%{?ruby_mod_ver_requires_eq}
-Obsoletes:	ruby-XTemplate
+BuildRequires:	rpm-rubyprov
+BuildRequires:	rpmbuild(macros) >= 1.665
 Provides:	ruby-XTemplate
+Obsoletes:	ruby-XTemplate
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-# nothing to be placed there. we're not noarch only because of ruby packaging
-%define		_enable_debug_packages	0
 
 %description
 An XML/XHTML template library for Ruby.
@@ -55,23 +50,18 @@ Dokumentacji w formacie ri dla %{pkgname}.
 %setup -q -n %{pkgname}-%{version}
 
 %build
-ruby install.rb config \
-	--site-ruby=%{ruby_rubylibdir} \
-	--so-dir=%{ruby_archdir}
-
-ruby install.rb setup
-
 rdoc --ri --op ri lib
 rdoc --op rdoc lib
 rm -r ri/{Enumerable,Hash}
 rm ri/created.rid
+rm ri/cache.ri
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{ruby_rubylibdir},%{ruby_ridir},%{ruby_rdocdir}}
+install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{ruby_ridir},%{ruby_rdocdir},%{_bindir}}
 
-ruby install.rb install \
-	--prefix=$RPM_BUILD_ROOT
+cp -a lib/* $RPM_BUILD_ROOT%{ruby_vendorlibdir}
+cp -a bin/* $RPM_BUILD_ROOT%{_bindir}
 
 cp -a ri/* $RPM_BUILD_ROOT%{ruby_ridir}
 cp -a rdoc $RPM_BUILD_ROOT%{ruby_rdocdir}/%{name}-%{version}
@@ -83,9 +73,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc STATUS CHANGES samples
 %attr(755,root,root) %{_bindir}/xtemplate
-%dir %{ruby_rubylibdir}/xtemplate
-%{ruby_rubylibdir}/xtemplate/*.rb
-%{ruby_rubylibdir}/xtemplate.rb
+%{ruby_vendorlibdir}/xtemplate.rb
+%{ruby_vendorlibdir}/xtemplate
 
 %files rdoc
 %defattr(644,root,root,755)
