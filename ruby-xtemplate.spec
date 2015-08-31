@@ -3,7 +3,7 @@ Summary:	An XML/XHTML template library for Ruby
 Summary(pl.UTF-8):	Biblioteka szablonów XML/XHTML dla języka Ruby
 Name:		ruby-%{pkgname}
 Version:	0.8.0
-Release:	6
+Release:	7
 License:	GPL
 Group:		Development/Libraries
 Source0:	http://downloads.sourceforge.net/xtemplate/%{pkgname}-%{version}.tar.gz
@@ -49,7 +49,7 @@ Dokumentacji w formacie ri dla %{pkgname}.
 
 %prep
 %setup -q -n %{pkgname}-%{version}
-%{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*
+%{__sed} -i -re '1 s,#!.*ruby(-1.8)?,#!%{__ruby},' bin/*
 
 %build
 rdoc --ri --op ri lib
